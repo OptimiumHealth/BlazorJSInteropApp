@@ -1,9 +1,4 @@
-using BlazorJSInteropApp.Data;
-
 using Material.Blazor;
-
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
 
 var builder = WebApplication.CreateBuilder(args);
 
