@@ -7,15 +7,13 @@
 <div class="mdc-layout-grid__cell--span-12">
     <MBCard AutoStyled="true">
         <Primary>
-            <h2>Press button #1 below to invoke JSInterop; Observe the exception in Chrome/Edge but not Firefox</h2>
+            <h2>Press button #1 below to invoke JSInterop.InvokeAsync; Observe the exception in Chrome/Edge but not Firefox</h2>
             <h2>You can dismiss the new tab to return to this page</h2>
-            <h2>It takes one minute for the exception to occur</h2>
             <MBButton ButtonStyle="MBButtonStyle.ContainedRaised"
                       Label="Press me #1!"
                       @onclick="@internalClick1" />
-            <h2>Press button #2 below to invoke JSInterop; Observe taht no exception is reported</h2>
+            <h2>Press button #2 below to invoke JSInterop.InvokeVoidAsync; Observe that no exception is reported</h2>
             <h2>You can dismiss the new tab to return to this page</h2>
-            <h2>It takes one minute for the exception to occur</h2>
             <MBButton ButtonStyle="MBButtonStyle.ContainedRaised"
                       Label="Press me #2!"
                       @onclick="@internalClick2" />
@@ -42,7 +40,7 @@
     public async Task internalClick2()
     {
         mbToastService.ShowToast(MBToastLevel.Info, "About to call IJSInterop.InvokeAsync", "internalClick2 invoked", MBNotifierCloseMethod.DismissButton);
-        await jsRuntime.InvokeAsync<object>("open", "document.pdf", "_blank");
+        await jsRuntime.InvokeVoidAsync("open", "document.pdf", "_blank");
         mbToastService.ShowToast(MBToastLevel.Success, "Return from JSInterop call", "internalClick2 returning", MBNotifierCloseMethod.DismissButton);
     }
 

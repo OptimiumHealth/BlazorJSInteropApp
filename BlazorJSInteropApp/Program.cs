@@ -7,30 +7,24 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 
 
-builder.Services.AddMBServices(
-    loggingServiceConfiguration: new MBLoggingServiceConfiguration()
+builder.Services.AddMBServices(options =>
     {
-        LoggingLevel = MBLoggingLevel.Debug
-    },
-    toastServiceConfiguration: new MBToastServiceConfiguration()
-    {
-        InfoDefaultHeading = "Info",
-        SuccessDefaultHeading = "Success",
-        WarningDefaultHeading = "Warning",
-        ErrorDefaultHeading = "Error",
-        Timeout = 10000,
-        MaxToastsShowing = 3,
-        CloseMethod = MBNotifierCloseMethod.TimeoutAndDismissButton,
-        Position = MBToastPosition.CenterLeft
-    },
-    snackbarServiceConfiguration: new MBSnackbarServiceConfiguration()
-    {
-        CloseMethod = MBNotifierCloseMethod.TimeoutAndDismissButton,
-        Leading = false,
-        Stacked = true,
-        Timeout = 5000,
-    }
-    );
+        options.LoggingServiceConfiguration = new MBLoggingServiceConfiguration()
+        {
+            LoggingLevel = MBLoggingLevel.Debug,
+        };
+        options.ToastServiceConfiguration = new MBToastServiceConfiguration()
+        {
+            CloseMethod = MBNotifierCloseMethod.TimeoutAndDismissButton,
+            ErrorDefaultHeading = "Error",
+            InfoDefaultHeading = "Info",
+            MaxToastsShowing = 3,
+            Position = MBToastPosition.CenterLeft,
+            SuccessDefaultHeading = "Success",
+            Timeout = 3000,
+            WarningDefaultHeading = "Warning",
+        };
+    });
 
 var app = builder.Build();
 
